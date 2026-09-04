@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "AEM Toolbelt",
+  "version": "{{VERSION}}",
+  "description": "Surfaces info the AEM Assets console hides (folder paths, shared-asset paths) and more.",
+  "content_scripts": [
+    {
+      "matches": ["https://*.adobeaemcloud.com/*", "http://localhost:4502/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["scripting"],
+  "optional_host_permissions": ["*://*/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "AEM Toolbelt"
+  }
+}

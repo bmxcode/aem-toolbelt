@@ -1,0 +1,13 @@
+// ==UserScript==
+// @name         AEM Toolbelt
+// @namespace    https://github.com/bmxcode/aem-toolbelt
+// @version      {{VERSION}}
+// @description  Surfaces info the AEM Assets console hides (folder paths, shared-asset paths) and more.
+// @author       bmxcode
+// @match        https://*.adobeaemcloud.com/*
+// @match        http://localhost:4502/*
+// @icon         data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='13'%3E%F0%9F%A7%B0%3C/text%3E%3C/svg%3E
+// @grant        none
+// @run-at       document-idle
+// @noframes
+// ==/UserScript==
