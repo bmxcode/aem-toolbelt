@@ -49,10 +49,12 @@ export function h(tag, props = {}, children = []) {
   return node;
 }
 
+export const LINK_CLASS = 'aem-tb-link';
+
 /** An external link that opens in a new tab, styled by the injected stylesheet. */
 export function link(href, text, extraClass = '') {
   return h('a', {
-    class: `aem-tb-link${extraClass ? ` ${extraClass}` : ''}`,
+    class: `${LINK_CLASS}${extraClass ? ` ${extraClass}` : ''}`,
     href,
     target: '_blank',
     rel: 'noopener',
