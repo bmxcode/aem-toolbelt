@@ -10,16 +10,18 @@ It ships two ways from **one shared codebase**:
 - a **Tampermonkey userscript** — fastest to install and iterate, and
 - an **MV3 Chrome extension** — cleaner for distributing to a team.
 
-Everything is **DOM-only**: no server deploy, no page-context scripts, no network calls beyond
-navigating you to existing AEM URLs. It runs as the already-logged-in user and works on any instance
-your browser can reach. This keeps it clean under the strict AEM as a Cloud Service CSP.
+It's **client-side only**: no server deploy and no page-context scripts, so it stays clean under the
+strict AEM as a Cloud Service CSP. It runs as the already-logged-in user and works on any instance
+your browser can reach. The only network it does is the occasional same-origin, read-only `GET`
+(e.g. the Shared Links info box fetches a share record's JSON on hover) — everything else just reads
+the DOM and links you to existing AEM URLs.
 
 ## What it fixes today
 
 | Console | Problem | Toolbelt adds |
 | --- | --- | --- |
-| **Remove from Folder(s)** wizard — used by Metadata Schemas, Folder Metadata Schemas, Metadata Profiles, Processing Profiles, Image Profiles, Video Profiles | Folder cards show only a title, no path | The folder path + an **Open folder** link |
-| **Assets › Shared Links** | Every row just says "Link share" — no idea which asset | The shared asset filename + path (**Open in Assets**) and a **View share JSON** link to the share record |
+| **Remove from Folder(s)** wizard — used by Metadata Schemas, Folder Metadata Schemas, Metadata Profiles, Processing Profiles, Image Profiles, Video Profiles | Header doesn't say what's being removed; folder cards show only a title, no path; no way to open a folder | A "Removing _&lt;type&gt; &lt;name&gt;_" banner, the folder path on each card, and an **Open Folder** button next to Cancel (enabled when a single folder is selected) |
+| **Assets › Shared Links** | Every row just says "Link share" — no idea which asset, who it was shared with, or when | The shared asset **filename(s) as links** (`Share Link: name ↗`; multiple assets render as a comma-separated list), and an **ⓘ info box** on hover with created-by, created/expiry dates, download/rendition permissions, message, and the **shared-with emails** (from the share JSON) |
 
 Detection is by **DOM signature, not URL** — AEMaaCS console paths are non-obvious and change
 between versions, so the enhancers simply look for their target elements and no-op otherwise.
