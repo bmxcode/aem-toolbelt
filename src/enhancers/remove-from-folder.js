@@ -1,23 +1,24 @@
 // Enhancer #1 — "Remove from Folder(s)" wizard (`removeppwizard`).
 //
-// Two gaps, same wizard:
-//  1. The header only says "Select Folder(s)" — it never says *what* you're removing. We add a
-//     banner naming it, e.g. "Removing Schema test-b" (label from the profile type, name from the
-//     wizard URL).
-//  2. The folder cards show only a title + "FOLDER", never the path. It's on each card as
-//     `data-foundation-collection-item-id`; we surface it + an Open folder link.
+// Three gaps, same wizard:
+//  1. The header only says "Select Folder(s)" — never *what* you're removing. We add a banner
+//     naming it, e.g. "Removing Schema test-b".
+//  2. The folder cards show only a title + "FOLDER", never the path. We surface the path as text
+//     on each card (read-only — the card itself is a selectable tile, so we don't put a link on it).
+//  3. There's no way to jump to a folder. We add an "Open Folder" button next to Cancel in the
+//     header that opens the selected folder(s) in Assets (or all listed folders if none selected).
 //
 // This one enhancer covers every Assets Tool that reuses the wizard: Metadata Schemas, Folder
 // Metadata Schemas, Metadata Profiles, Processing Profiles, Image Profiles, and Video Profiles.
 
 import { register } from '../core/registry.js';
-import { markOnce, assetsUrl, h, link } from '../core/dom.js';
+import { markOnce, assetsUrl, h } from '../core/dom.js';
 
 const ID = 'remove-from-folder';
 const WIZARD_SELECTOR = 'form.remove-folder-wizard';
-// Full-width banner slot: above the folder grid, below the (flex) header toolbar. Injecting into
-// the header row itself collapses the "Select Folder(s)" title, so anchor to the content container.
 const BANNER_ANCHOR_SELECTOR = '.cq-damadmin-admin-remove-folder-container';
+const HEADER_SELECTOR = '.foundation-layout-wizard2-header';
+const CANCEL_SELECTOR = '.foundation-layout-wizard2-header a.foundation-wizard-control';
 const ITEM_SELECTOR =
   'coral-masonry-item.foundation-collection-item[data-foundation-collection-item-id^="/content/dam"]';
 const URL_MARKER = 'removeppwizard.html';
@@ -35,6 +36,29 @@ function profileFromUrl() {
   const word = words[words.length - 1] || 'Profile';
   const label = word.charAt(0).toUpperCase() + word.slice(1);
   return { name, label };
+}
+
+function folderPaths({ selectedOnly } = {}) {
+  const items = [...document.querySelectorAll(ITEM_SELECTOR)];
+  const chosen = selectedOnly ? items.filter((i) => i.getAttribute('aria-selected') === 'true') : items;
+  return chosen.map((i) => i.getAttribute('data-foundation-collection-item-id')).filter(Boolean);
+}
+
+function buildOpenButton() {
+  const btn = h(
+    'button',
+    { type: 'button', class: '_coral-Button _coral-Button--secondary foundation-layout-inline2-item aem-tb-open-folder' },
+    [h('coral-button-label', { class: '_coral-Button-label', text: 'Open Folder' })],
+  );
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // Prefer the selected folder(s); fall back to all listed folders (covers the common 1-folder case).
+    const paths = folderPaths({ selectedOnly: true });
+    const targets = paths.length ? paths : folderPaths();
+    targets.forEach((p) => window.open(assetsUrl(p), '_blank', 'noopener'));
+  });
+  return btn;
 }
 
 register({
@@ -56,19 +80,24 @@ register({
       );
     }
 
-    // 2. Folder cards: show each folder's path + Open folder link.
+    // 2. Header "Open Folder" button, next to Cancel (only when there are folders to open).
+    const cancel = document.querySelector(CANCEL_SELECTOR);
+    const header = document.querySelector(HEADER_SELECTOR);
+    if (cancel && header && document.querySelector(ITEM_SELECTOR) && markOnce(header, `${ID}-openbtn`)) {
+      cancel.insertAdjacentElement('beforebegin', buildOpenButton());
+    }
+
+    // 3. Folder cards: show each folder's path (read-only text; no link on the selectable tile).
     document.querySelectorAll(ITEM_SELECTOR).forEach((item) => {
       if (!markOnce(item, ID)) return;
       const path = item.getAttribute('data-foundation-collection-item-id');
       if (!path) return;
-
-      const info = h('div', { class: 'aem-tb-path-info aem-tb-card-path' }, [
-        h('span', { class: 'aem-tb-path', title: path, text: path }),
-        link(assetsUrl(path), 'Open folder ↗'),
-      ]);
-
       const card = item.querySelector('coral-card') || item;
-      card.appendChild(info);
+      card.appendChild(
+        h('div', { class: 'aem-tb-path-info aem-tb-card-path' }, [
+          h('span', { class: 'aem-tb-path', title: path, text: path }),
+        ]),
+      );
     });
   },
 });
