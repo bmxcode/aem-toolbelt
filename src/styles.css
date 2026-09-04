@@ -62,10 +62,6 @@
   user-select: none;
 }
 
-.aem-tb-users-hover {
-  cursor: help;
-}
-
 /* Floating info popover. */
 .aem-tb-popover {
   position: fixed;

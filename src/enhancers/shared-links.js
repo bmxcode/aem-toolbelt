@@ -5,8 +5,8 @@
 // We replace the row's ITEM cell with:
 //   - the shared asset filename(s) as links (↗ opens the asset in a new tab; multiple assets render
 //     as a comma-separated list of filenames), and
-//   - an info icon whose hover popover shows the share details fetched from the JSON.
-// Hovering the USERS count also opens that popover (so the shared-with emails are reachable there).
+//   - an info icon whose hover popover shows the share details fetched from the JSON, including the
+//     shared-with emails behind the USERS count.
 
 import { register } from '../core/registry.js';
 import { markOnce, assetsUrl, splitMultiPath, h, link } from '../core/dom.js';
@@ -112,14 +112,6 @@ register({
       cell.appendChild(files);
       cell.appendChild(document.createTextNode(' '));
       cell.appendChild(info);
-
-      // Users count -> same popover (reaches the shared-with emails) when there are users.
-      const usersEl = row.querySelector('[data-num-users]');
-      const count = usersEl ? parseInt(usersEl.getAttribute('data-num-users'), 10) : 0;
-      if (usersEl && count > 0) {
-        usersEl.classList.add('aem-tb-users-hover');
-        attachHoverPopover(usersEl, () => loadShare(row).then((json) => buildInfoBox(json)));
-      }
     });
   },
 });
