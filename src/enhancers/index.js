@@ -3,7 +3,6 @@
 
 import './remove-from-folder.js';
 import './shared-links.js';
-import './metadata-schema-list.js';
 
 import { start } from '../core/runner.js';
 
