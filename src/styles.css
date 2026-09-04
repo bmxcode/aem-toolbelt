@@ -43,6 +43,12 @@
   color: #222;
 }
 
+.aem-tb-open-folder[disabled] {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
 /* Stack the per-asset path rows in a shared-links cell. */
 .aem-tb-share-list {
   display: flex;

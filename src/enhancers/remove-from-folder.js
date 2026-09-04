@@ -6,7 +6,8 @@
 //  2. The folder cards show only a title + "FOLDER", never the path. We surface the path as text
 //     on each card (read-only — the card itself is a selectable tile, so we don't put a link on it).
 //  3. There's no way to jump to a folder. We add an "Open Folder" button next to Cancel in the
-//     header that opens the selected folder(s) in Assets (or all listed folders if none selected).
+//     header. It is enabled only when exactly one folder tile is selected, and opens that folder
+//     in Assets. (The tile is selectable, so a single selection is an unambiguous target.)
 //
 // This one enhancer covers every Assets Tool that reuses the wizard: Metadata Schemas, Folder
 // Metadata Schemas, Metadata Profiles, Processing Profiles, Image Profiles, and Video Profiles.
@@ -50,15 +51,21 @@ function buildOpenButton() {
     { type: 'button', class: '_coral-Button _coral-Button--secondary foundation-layout-inline2-item aem-tb-open-folder' },
     [h('coral-button-label', { class: '_coral-Button-label', text: 'Open Folder' })],
   );
+  btn.disabled = true;
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // Prefer the selected folder(s); fall back to all listed folders (covers the common 1-folder case).
     const paths = folderPaths({ selectedOnly: true });
-    const targets = paths.length ? paths : folderPaths();
-    targets.forEach((p) => window.open(assetsUrl(p), '_blank', 'noopener'));
+    if (paths.length === 1) window.open(assetsUrl(paths[0]), '_blank', 'noopener');
   });
   return btn;
+}
+
+// Enable only when exactly one folder tile is selected.
+function syncOpenButtonState(btn) {
+  const enabled = folderPaths({ selectedOnly: true }).length === 1;
+  btn.disabled = !enabled;
+  btn.title = enabled ? '' : 'Select a single folder to open it';
 }
 
 register({
@@ -84,7 +91,16 @@ register({
     const cancel = document.querySelector(CANCEL_SELECTOR);
     const header = document.querySelector(HEADER_SELECTOR);
     if (cancel && header && document.querySelector(ITEM_SELECTOR) && markOnce(header, `${ID}-openbtn`)) {
-      cancel.insertAdjacentElement('beforebegin', buildOpenButton());
+      const btn = buildOpenButton();
+      cancel.insertAdjacentElement('beforebegin', btn);
+      syncOpenButtonState(btn);
+      // Keep the enabled state in sync with tile selection (mouse or keyboard).
+      const collection = document.querySelector(BANNER_ANCHOR_SELECTOR) || header.closest('form') || document;
+      new MutationObserver(() => syncOpenButtonState(btn)).observe(collection, {
+        attributes: true,
+        subtree: true,
+        attributeFilter: ['aria-selected'],
+      });
     }
 
     // 3. Folder cards: show each folder's path (read-only text; no link on the selectable tile).
