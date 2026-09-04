@@ -43,10 +43,25 @@ It auto-runs on `*.adobeaemcloud.com` and `localhost:4502`. For other hosts, add
 
 ### Chrome extension
 
-1. `npm install && npm run build`
-2. `chrome://extensions` → enable **Developer mode** → **Load unpacked** → select `build/extension/`.
-3. For AEM hosts outside `*.adobeaemcloud.com` / `localhost:4502` (e.g. AMS or on-prem), click the
-   extension icon and **Enable on this site**.
+**From a release (no npm):**
+
+1. Download **`aem-toolbelt-extension-<version>.zip`** from the
+   [latest release](https://github.com/bmxcode/aem-toolbelt/releases/latest).
+2. **Unzip it.** Chrome loads the *folder*, not the zip — keep the unzipped folder somewhere
+   permanent (Chrome reads it from disk on every launch; moving or deleting it breaks the extension).
+3. Open `chrome://extensions`.
+4. Toggle on **Developer mode** (top-right).
+5. Click **Load unpacked** and select the unzipped folder. "AEM Toolbelt" appears in the list.
+6. Optional: click the toolbar puzzle-piece icon and **pin** AEM Toolbelt for one-click access to its popup.
+
+**From a local build:** run `npm install && npm run build`, then Load unpacked on `build/extension/`
+(steps 3–6 above).
+
+It auto-runs on `*.adobeaemcloud.com` and `localhost:4502`. For AEM hosts outside those (e.g. AMS or
+on-prem), click the AEM Toolbelt icon and **Enable on this site**, then reload the tab.
+
+**Updating:** unpacked extensions don't auto-update. Download the new zip, unzip over the same
+folder, then click the refresh icon on the extension's card in `chrome://extensions`.
 
 ## Develop
 
