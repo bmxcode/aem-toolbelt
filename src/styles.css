@@ -49,10 +49,51 @@
   pointer-events: none;
 }
 
-/* Stack the per-asset path rows in a shared-links cell. */
-.aem-tb-share-list {
+/* Shared Links: filename links + info icon. */
+.aem-tb-info-icon {
+  cursor: help;
+  color: #1473e6;
+  margin-left: 6px;
+  font-size: 13px;
+  user-select: none;
+}
+
+.aem-tb-users-hover {
+  cursor: help;
+}
+
+/* Floating info popover. */
+.aem-tb-popover {
+  position: fixed;
+  z-index: 100000;
+  max-width: 360px;
+  background: #fff;
+  color: #222;
+  border: 1px solid #d3d3d3;
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.aem-tb-kv {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 4px;
+  gap: 8px;
+  margin: 2px 0;
+}
+
+.aem-tb-k {
+  color: #6e6e6e;
+  white-space: nowrap;
+  min-width: 118px;
+}
+
+.aem-tb-v {
+  color: #222;
+  word-break: break-word;
+}
+
+.aem-tb-pop-loading {
+  color: #6e6e6e;
 }
