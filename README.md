@@ -33,13 +33,28 @@ between versions, so the enhancers simply look for their target elements and no-
 
 ### Userscript (recommended to start)
 
-1. Install [Tampermonkey](https://www.tampermonkey.net/) in Chrome.
-2. `npm install && npm run build`
-3. Open `build/aem-toolbelt.user.js` in Tampermonkey (drag it in, or create a new script and paste
-   the contents), and save.
+1. Install the [Tampermonkey](https://www.tampermonkey.net/) extension in Chrome.
+2. **Enable Developer mode** at `chrome://extensions` (top-right toggle). Recent Chrome versions
+   require this for Tampermonkey to run userscripts — without it, scripts silently don't execute and
+   Tampermonkey shows a warning.
+3. Install the script:
+   - **From a release (no npm):** download `aem-toolbelt-<version>.user.js` from the
+     [latest release](https://github.com/bmxcode/aem-toolbelt/releases/latest). Then open the
+     Tampermonkey **dashboard** → **Utilities** tab → under *Import*, choose the downloaded file
+     (or just drag the `.user.js` file onto the dashboard). Tampermonkey shows an install page —
+     click **Install**.
+   - **From a local build:** `npm install && npm run build`, then import `build/aem-toolbelt.user.js`
+     the same way.
 4. Reload your AEM author tab.
 
-It auto-runs on `*.adobeaemcloud.com` and `localhost:4502`. For other hosts, add a `@match` line.
+It auto-runs on `*.adobeaemcloud.com` and `localhost:4502`.
+
+- **Other AEM hosts (AMS / on-prem):** open the Tampermonkey dashboard → edit **AEM Toolbelt** → add
+  a line like `// @match https://author.example.com/*` in the header block, and save.
+- **Updating:** this userscript isn't wired for auto-update. To update, download the newer
+  `.user.js` and import it again — Tampermonkey overwrites the existing script of the same name.
+- **Verify it's on:** the Tampermonkey toolbar icon shows a badge with the number of active scripts
+  while you're on an AEM tab.
 
 ### Chrome extension
 
