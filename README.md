@@ -109,6 +109,13 @@ wrappers/        userscript header + MV3 extension (manifest, popup)
 build.mjs        esbuild: core+enhancers → userscript AND extension
 ```
 
+## Disclaimer
+
+AEM Toolbelt is an independent, community project. It is **not** affiliated with, endorsed by, or
+sponsored by Adobe. "Adobe Experience Manager" and "AEM" are trademarks of Adobe, used here only to
+describe what the tool works with. It reads the DOM of pages you are already authorised to view and
+adds no new permissions; use it at your own discretion.
+
 ## License
 
 MIT

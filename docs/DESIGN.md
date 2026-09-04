@@ -5,7 +5,7 @@
 The AEM Assets Touch UI console hides information that admins/developers need. In several
 places AEM **already has the data in the DOM** (as Granite/Coral attributes) but never renders it,
 forcing users into browser DevTools > Inspect to read an attribute by hand. Two confirmed cases
-(both verified live on the dev instance `author-p<program>-e<env>`):
+(both verified live on a dev AEMaaCS author instance):
 
 1. **Assets Tools > "Remove from Folder(s)" wizard** — the folder cards show only the folder
    *title* + the word "FOLDER", no path. **Confirmed:** each card is a
