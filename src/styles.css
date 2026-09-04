@@ -49,7 +49,11 @@
   pointer-events: none;
 }
 
-/* Shared Links: filename links + info icon. */
+/* Shared Links: "Share Link:" prefix + filename links + info icon. */
+.aem-tb-share-prefix {
+  color: #707070;
+}
+
 .aem-tb-info-icon {
   cursor: help;
   color: #1473e6;

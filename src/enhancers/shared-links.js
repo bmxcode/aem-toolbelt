@@ -106,8 +106,9 @@ register({
       stopSelection(info);
       attachHoverPopover(info, () => loadShare(row).then((json) => buildInfoBox(json)));
 
-      // Replace the cell's "Link share" text with filenames + info icon.
+      // Replace the cell's "Link share" text with a "Share Link:" prefix + filenames + info icon.
       cell.textContent = '';
+      cell.appendChild(h('span', { class: 'aem-tb-share-prefix', text: 'Share Link: ' }));
       cell.appendChild(files);
       cell.appendChild(document.createTextNode(' '));
       cell.appendChild(info);
