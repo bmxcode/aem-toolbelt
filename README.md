@@ -95,6 +95,9 @@ That's it — no wrapper or build changes. `appliesTo()` is a DOM-signature test
 the DOM idempotently (guard with `markOnce` from `src/core/dom.js`). The runner re-applies enhancers
 on AEM's in-app navigation (`foundation-contentloaded`) and on DOM mutations.
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full walkthrough, conventions, helper reference, and a
+PR checklist.
+
 ## Project layout
 
 ```
