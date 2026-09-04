@@ -26,6 +26,11 @@ between versions, so the enhancers simply look for their target elements and no-
 
 ## Install
 
+**No build required:** grab the prebuilt files from the
+[latest release](https://github.com/bmxcode/aem-toolbelt/releases/latest) —
+`aem-toolbelt-<version>.user.js` (userscript) and `aem-toolbelt-extension-<version>.zip`
+(unzip and Load unpacked). Otherwise build locally as below.
+
 ### Userscript (recommended to start)
 
 1. Install [Tampermonkey](https://www.tampermonkey.net/) in Chrome.

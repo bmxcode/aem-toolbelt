@@ -1,0 +1,50 @@
+name: Release
+
+# Cut a release by tagging a commit, e.g.:
+#   npm version patch    # bumps package.json + creates the vX.Y.Z tag
+#   git push --follow-tags
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Check package.json version matches tag
+        run: |
+          PKG=$(node -p "require('./package.json').version")
+          TAG="${GITHUB_REF_NAME#v}"
+          if [ "$PKG" != "$TAG" ]; then
+            echo "::error::package.json version ($PKG) does not match tag ($TAG)"
+            exit 1
+          fi
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Package artifacts
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          cp build/aem-toolbelt.user.js "aem-toolbelt-${VERSION}.user.js"
+          (cd build/extension && zip -r "../../aem-toolbelt-extension-${VERSION}.zip" .)
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          gh release create "$GITHUB_REF_NAME" \
+            --title "AEM Toolbelt ${GITHUB_REF_NAME}" \
+            --generate-notes \
+            "aem-toolbelt-${VERSION}.user.js" \
+            "aem-toolbelt-extension-${VERSION}.zip"
