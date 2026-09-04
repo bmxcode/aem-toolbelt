@@ -31,6 +31,18 @@
   padding: 6px 8px 2px;
 }
 
+/* Banner naming what's being removed, above the folder grid. */
+.aem-tb-wizard-subtitle {
+  font-size: 14px;
+  padding: 4px 15px 10px;
+  color: #333;
+}
+
+.aem-tb-name {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  color: #222;
+}
+
 /* Stack the per-asset path rows in a shared-links cell. */
 .aem-tb-share-list {
   display: flex;
