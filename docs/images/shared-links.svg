@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="430" viewBox="0 0 820 430" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif">
+  <style>
+    .t{fill:#2b2b2b}.muted{fill:#707070}.link{fill:#1473e6}.k{fill:#6e6e6e}
+    .mono{font-family:'SF Mono',Menlo,Consolas,monospace}
+    .hdr{fill:#8a8a8a;font-size:11px;letter-spacing:.06em}
+  </style>
+  <rect width="820" height="430" fill="#ffffff"/>
+
+  <!-- title bar -->
+  <text x="410" y="27" text-anchor="middle" font-size="16" class="t">Shared Links</text>
+  <line x1="0" y1="44" x2="820" y2="44" stroke="#e4e4e4"/>
+
+  <!-- column headers -->
+  <text x="120" y="64" class="hdr">ITEM</text>
+  <text x="600" y="64" class="hdr">USERS</text>
+  <text x="690" y="64" class="hdr">EXPIRING</text>
+  <line x1="0" y1="74" x2="820" y2="74" stroke="#ededed"/>
+
+  <!-- row 1: single asset -->
+  <g font-size="14">
+    <rect x="24" y="92" width="15" height="15" rx="2" fill="#fff" stroke="#b3b3b3"/>
+    <rect x="58" y="86" width="30" height="28" rx="3" fill="#dfe6ef"/>
+    <text x="120" y="105"><tspan class="muted">Share Link: </tspan><tspan class="link">spring-campaign-hero.jpg</tspan><tspan class="link"> ↗</tspan><tspan class="link" dx="6">ⓘ</tspan></text>
+    <text x="600" y="105" class="link">👤 2</text>
+    <text x="690" y="105" class="t">30 Oct 2026</text>
+  </g>
+  <line x1="0" y1="128" x2="820" y2="128" stroke="#ededed"/>
+
+  <!-- row 2: many assets, truncated -->
+  <g font-size="14">
+    <rect x="24" y="146" width="15" height="15" rx="2" fill="#fff" stroke="#b3b3b3"/>
+    <rect x="58" y="140" width="30" height="28" rx="3" fill="#dfe6ef"/>
+    <text x="120" y="159"><tspan class="muted">Share Link: </tspan><tspan class="link">07_cover.indd</tspan><tspan class="t">, </tspan><tspan class="link">08_spread.indd</tspan><tspan class="muted">, … 3 more</tspan><tspan class="link" dx="6">ⓘ</tspan></text>
+    <text x="600" y="159" class="link">👤 0</text>
+    <text x="690" y="159" class="t">26 Aug 2026</text>
+  </g>
+  <line x1="0" y1="182" x2="820" y2="182" stroke="#ededed"/>
+
+  <!-- row 3: folder share (was blank; filled from JSON) -->
+  <g font-size="14">
+    <rect x="24" y="200" width="15" height="15" rx="2" fill="#fff" stroke="#b3b3b3"/>
+    <rect x="58" y="194" width="30" height="28" rx="3" fill="#33373d"/>
+    <text x="120" y="213"><tspan class="muted">Share Link: </tspan><tspan class="link">spring</tspan><tspan class="link"> ↗</tspan><tspan class="link" dx="6">ⓘ</tspan></text>
+    <text x="600" y="213" class="link">👤 1</text>
+    <text x="690" y="213" class="t">5 Nov 2026</text>
+  </g>
+  <line x1="0" y1="236" x2="820" y2="236" stroke="#ededed"/>
+
+  <!-- info popover (hovering the ⓘ on row 2) -->
+  <g>
+    <rect x="150" y="250" width="360" height="168" rx="6" fill="#ffffff" stroke="#d3d3d3"/>
+    <rect x="150" y="250" width="360" height="168" rx="6" fill="none" stroke="#00000010"/>
+    <g font-size="12">
+      <text x="166" y="272" class="k">Shared items (5)</text>
+      <text x="285" y="272" class="link mono">07_cover.indd ↗</text>
+      <text x="285" y="289" class="link mono">08_spread.indd ↗</text>
+      <text x="285" y="306" class="link mono">09_backpage.indd ↗</text>
+      <text x="285" y="323" class="link mono">hero_600x400.png ↗</text>
+      <text x="285" y="340" class="link mono">logo_lockup.svg ↗</text>
+      <text x="166" y="366" class="k">Created by</text><text x="285" y="366" class="t">jo.editor@example.com</text>
+      <text x="166" y="384" class="k">Created</text><text x="285" y="384" class="t">24 Aug 2026, 11:29</text>
+      <text x="166" y="402" class="k">Expires</text><text x="285" y="402" class="t">26 Aug 2026, 14:32</text>
+    </g>
+  </g>
+
+  <!-- emails popover (hovering the USERS count on row 3) -->
+  <g>
+    <rect x="560" y="250" width="248" height="60" rx="6" fill="#ffffff" stroke="#d3d3d3"/>
+    <text x="574" y="272" font-size="12" class="k">Shared with (1)</text>
+    <text x="574" y="292" font-size="12" class="t mono">client.team@example.com</text>
+  </g>
+</svg>

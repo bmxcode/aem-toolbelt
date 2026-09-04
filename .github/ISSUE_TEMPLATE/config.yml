@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Adding an enhancer — how-to
+    url: https://github.com/bmxcode/aem-toolbelt/blob/main/CONTRIBUTING.md
+    about: The walkthrough, conventions, and helper reference for writing a new enhancer.

@@ -1,0 +1,43 @@
+name: "New enhancer (console gap)"
+description: Suggest a piece of information AEM hides in the console that the toolbelt could surface.
+labels: ["enhancer"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Each enhancer surfaces something AEM already has in the DOM but doesn't render.
+        The more of the DOM detail you can fill in, the easier it is to build. See
+        [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+  - type: input
+    id: console
+    attributes:
+      label: Which console / screen?
+      placeholder: e.g. Tools > Assets > Metadata Schema Forms
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's hidden / missing?
+      description: What do you have to open DevTools to find today?
+    validations:
+      required: true
+  - type: textarea
+    id: dom
+    attributes:
+      label: Where does the value live in the DOM? (if known)
+      description: The element and the attribute holding it — e.g. `tr.foundation-collection-item` → `data-path`.
+      placeholder: |
+        Selector: ...
+        Attribute: ...
+        Example value: ...
+  - type: input
+    id: aem
+    attributes:
+      label: AEM version
+      placeholder: e.g. AEM as a Cloud Service, or 6.5
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: Desired output, related tools that reuse the same screen, screenshots, etc.

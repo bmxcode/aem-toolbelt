@@ -1,5 +1,9 @@
 # AEM Toolbelt 🧰
 
+[![CI](https://github.com/bmxcode/aem-toolbelt/actions/workflows/ci.yml/badge.svg)](https://github.com/bmxcode/aem-toolbelt/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/bmxcode/aem-toolbelt?sort=semver)](https://github.com/bmxcode/aem-toolbelt/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Client-side quality-of-life enhancements for the Adobe Experience Manager (AEM) Assets Touch UI
 console. AEM often **already has useful information in the page DOM** but never renders it, forcing
 admins and developers into browser DevTools to read an attribute by hand. AEM Toolbelt surfaces that
@@ -15,6 +19,19 @@ strict AEM as a Cloud Service CSP. It runs as the already-logged-in user and wor
 your browser can reach. The only network it does is the occasional same-origin, read-only `GET`
 (e.g. the Shared Links info box fetches a share record's JSON on hover) — everything else just reads
 the DOM and links you to existing AEM URLs.
+
+## Screenshots
+
+**Shared Links** — filenames as links (long shares collapse to "… N more"), an ⓘ info box with the
+full item list and share details, and a separate emails popup on the users count. _(Illustrative;
+sample data.)_
+
+![Shared Links enhanced by AEM Toolbelt](docs/images/shared-links.svg)
+
+**Remove from Folder(s)** — a banner naming what's being removed, the folder path on each card, and
+an Open Folder button (enabled when a single folder is selected). _(Illustrative; sample data.)_
+
+![Remove from Folder wizard enhanced by AEM Toolbelt](docs/images/remove-from-folder.svg)
 
 ## What it fixes today
 

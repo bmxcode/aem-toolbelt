@@ -1,0 +1,44 @@
+name: "Bug report"
+description: Something the toolbelt does is wrong or broken.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you see, and what did you expect instead?
+    validations:
+      required: true
+  - type: input
+    id: console
+    attributes:
+      label: Which console / screen?
+      placeholder: e.g. Assets > Shared Links
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How is it installed?
+      options:
+        - Chrome extension
+        - Tampermonkey userscript
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: AEM Toolbelt version
+      placeholder: e.g. 0.4.0
+  - type: input
+    id: aem
+    attributes:
+      label: AEM version
+      placeholder: e.g. AEM as a Cloud Service, or 6.5
+  - type: textarea
+    id: console-errors
+    attributes:
+      label: Browser console errors (if any)
+      description: Anything logged with the `[aem-toolbelt]` prefix, or other errors.
+      render: text
