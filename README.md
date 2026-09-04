@@ -21,7 +21,7 @@ the DOM and links you to existing AEM URLs.
 | Console | Problem | Toolbelt adds |
 | --- | --- | --- |
 | **Remove from Folder(s)** wizard — used by Metadata Schemas, Folder Metadata Schemas, Metadata Profiles, Processing Profiles, Image Profiles, Video Profiles | Header doesn't say what's being removed; folder cards show only a title, no path; no way to open a folder | A "Removing _&lt;type&gt; &lt;name&gt;_" banner, the folder path on each card, and an **Open Folder** button next to Cancel (enabled when a single folder is selected) |
-| **Assets › Shared Links** | Every row just says "Link share" — no idea which asset, who it was shared with, or when | The shared asset **filename(s) as links** (`Share Link: name ↗`; multiple assets render as a comma-separated list), and an **ⓘ info box** on hover with created-by, created/expiry dates, download/rendition permissions, message, and the **shared-with emails** (from the share JSON) |
+| **Assets › Shared Links** | Every row just says "Link share" — no idea which asset/folder, who it was shared with, or when | The shared item **filename(s) as links** (`Share Link: name ↗`; a long share shows the first two + "… N more"). An **ⓘ info box** on hover lists every shared item plus created-by, created/expiry dates, download/rendition permissions, and message. A **separate emails popup** on the USERS icon (only when the count is &gt; 0) lists who it was shared with. Folder shares (and other rows AEM leaves blank) are filled in from the share JSON. |
 
 Detection is by **DOM signature, not URL** — AEMaaCS console paths are non-obvious and change
 between versions, so the enhancers simply look for their target elements and no-op otherwise.
