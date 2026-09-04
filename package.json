@@ -1,6 +1,6 @@
 {
   "name": "aem-toolbelt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Client-side quality-of-life enhancements for the Adobe Experience Manager (AEM) Assets/Sites Touch UI console. Surfaces information AEM hides in the DOM (folder paths, shared-asset paths, and more) via a userscript and a Chrome extension built from one shared core.",
   "type": "module",
   "scripts": {
