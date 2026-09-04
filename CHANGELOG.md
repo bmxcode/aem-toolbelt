@@ -6,6 +6,11 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Added
+- **Metadata Schemas:** the Assets › Metadata Schemas list now surfaces each schema's full path,
+  a **View JSON** link (`<path>.-1.json`), and a `node: <name>` chip when the node name differs
+  from the visible title. Thanks [@Akshanth07](https://github.com/Akshanth07) for the contribution.
+
 ## [0.4.0] — 2026-09-04
 
 ### Added
