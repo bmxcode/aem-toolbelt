@@ -62,11 +62,22 @@
   user-select: none;
 }
 
+.aem-tb-more {
+  color: #6e6e6e;
+  cursor: help;
+}
+
+.aem-tb-users-hover {
+  cursor: help;
+}
+
 /* Floating info popover. */
 .aem-tb-popover {
   position: fixed;
   z-index: 100000;
-  max-width: 360px;
+  max-width: 380px;
+  max-height: 60vh;
+  overflow: auto;
   background: #fff;
   color: #222;
   border: 1px solid #d3d3d3;
@@ -75,6 +86,20 @@
   padding: 10px 12px;
   font-size: 12px;
   line-height: 1.5;
+}
+
+/* Scrollable list of shared items / emails inside a popover. */
+.aem-tb-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 180px;
+  overflow: auto;
+}
+
+.aem-tb-emails-title {
+  color: #6e6e6e;
+  margin-bottom: 4px;
 }
 
 .aem-tb-kv {
